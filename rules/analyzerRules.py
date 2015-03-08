@@ -23,16 +23,17 @@ reserveWords = {
     'return'
 }
 
-logicOperators 		= 'and|or|not|var'
-terminals 			= '{|[|(|)|]|}'
-relationalOperators = '<=|>=|<|>|===|==|!=|='
-numbers 			= '[0-9]*'
-addition 			= ''
-ID 					= r'[a-zA-Z_][a-zA-Z0-9_]*'
-t_PLUS    			= r'\+'
-t_MINUS   			= r'-'
-t_TIMES   			= r'\*'
-t_DIVIDE  			= r'/'
-t_EQUALS  			= r'='
-# Ignored characters
-t_ignore = " \t"
+# Identifiers
+idValues			= r'[a-zA-Z_][a-zA-Z0-9_]*'
+# Integer or decimal number
+numbers 			= r'\d+(\.\d*)?'
+# Arithmetic operators
+aritmeticOperatos 	= r'[+*\/\-]'
+# Line endings
+newLine 			= r'\n'
+# Skip over spaces and tabs
+skipValues 			= r'[ \t]'
+# Skip over spaces and tabs
+logicOperators 		= r'and|or|not'
+terminals 			= r'{|[|(|)|]|}|;|:|.'
+relationalOperators = r'<=|>=|<|>|===|==|!='

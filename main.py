@@ -5,18 +5,13 @@
 *"""
 
 #	Import clases and functions
-from rules.analyzerRules import *
 from classes.Entry import *
+from rules.analyzerRules import *
+import collections
 import re
 
 i 				= Entry()
 data 			= i.userScript().splitlines()
-rWords 			= [] #	reserve words
-opLogics 		= []
-op 				= []
-relOperator 	= []
-terminal 		= []
-numberValues 	= []
 breakLines 		= (len(data) - 1)
 
 
@@ -29,8 +24,35 @@ breakLines 		= (len(data) - 1)
 #Terminal = terminal
 
 #	Removing duplicate values, source: http://www.thecapybara.com/2010/09/nota-python-eliminar-elementos.html
-#		Principal loop
-for index, x in enumerate(data, start = 1):
+def data (titleObj, typeObj, dataObj):
+	json = {
+		titleObj: {
+			typeObj: dataObj
+		}
+	}
+	print json
+
+lineNumber = 0
+formatedWords = []
+for token in i.tokenize(i.userScript(), reserveWords):
+	try:
+		#	Compare my variable with token.line value, if is equal add in my list the values
+		if lineNumber == token.line:
+			#formatedWords.append()
+			print token.typ + ': ' + token.value
+			formatedWords.append(token.value)
+			formatedWords.append(token.typ)
+			#data(token.typ)
+			#print list(set(formatedWords))
+		else:
+			lineNumber = int(token.line)
+			formatedWords = []
+			print 'Línea_______________________________________________ ' + str(lineNumber)
+	except Exception, e:
+		''
+
+#data('k', 'K', 1)
+"""for index, x in enumerate(data, start = 1):
 
 	print '__________________________________________________________________________ Línea ' + str(index)
 
@@ -104,6 +126,6 @@ print terminal, 'Terminales'
 
 relOperator = list(set(relOperator))
 print relOperator, 'relOperator'
-
+"""
 #op = list(set(op))
 #print op, 'operator'
